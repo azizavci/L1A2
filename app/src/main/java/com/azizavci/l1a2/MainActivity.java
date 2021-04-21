@@ -16,25 +16,27 @@ import Entities.Order;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static int SPLASH_SCREEN=5000;
+    private static int SPLASH_SCREEN = 5000;
     //variables
     Animation topAnimation;
     Animation bottomAnimation;
     ImageView logo;
     TextView designedBy, year;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
 
-        topAnimation= AnimationUtils.loadAnimation(this,R.anim.top_animation);
-        bottomAnimation=AnimationUtils.loadAnimation(this,R.anim.bottom_animation);
+        topAnimation = AnimationUtils.loadAnimation(this, R.anim.top_animation);
+        bottomAnimation = AnimationUtils.loadAnimation(this, R.anim.bottom_animation);
 
         //hooks
-        logo=findViewById(R.id.logo);
-        designedBy=findViewById(R.id.designedBy);
-        year=findViewById(R.id.year);
+        logo = findViewById(R.id.logo);
+        designedBy = findViewById(R.id.designedBy);
+        year = findViewById(R.id.year);
 
         logo.setAnimation(topAnimation);
         designedBy.setAnimation(bottomAnimation);
@@ -43,12 +45,13 @@ public class MainActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent=new Intent(MainActivity.this,HomePage.class);
+
+                //başlangıç sayfasından anasayfaya
+                Intent intent = new Intent(MainActivity.this, HomePage.class);
                 startActivity(intent);
                 finish();
             }
-        },SPLASH_SCREEN);
-
+        }, SPLASH_SCREEN);
 
 
     }

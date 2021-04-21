@@ -1,3 +1,18 @@
 <resources>
     <string name="app_name">L1A2</string>
+    <string name="nav_home">ANASAYFA</string>
+    <string name="profile">PROFİL</string>
+    <string name="navigation_drawer_open">OPEN</string>
+    <string name="navigation_drawer_close">CLOSE</string>
+    <string name="categories">CATEGORİLER</string>
+    <string name="login">GİRİŞ YAP</string>
+
+    <string-array name="spinner_product_size">
+        <item>"XS"</item>
+        <item>"S"</item>
+        <item>"M"</item>
+        <item>"L"</item>
+        <item>"XL"</item>
+    </string-array>
+
 </resources>
