@@ -31,7 +31,7 @@ public class MyMenu extends AppCompatActivity {
     }
 
     public void toCategoriesPage(View view){
-        Intent intent = new Intent(this, Categories.class);
+        Intent intent = new Intent(this,AddNewCategory.class);
         startActivity(intent);
         finish();
     }

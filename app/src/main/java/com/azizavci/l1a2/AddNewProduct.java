@@ -7,7 +7,6 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -19,6 +18,7 @@ import android.provider.MediaStore;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,18 +29,13 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirebaseFirestoreSettings;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
-import org.w3c.dom.Text;
-
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.UUID;
-
-import Entities.Product;
 
 public class AddNewProduct extends AppCompatActivity {
 
@@ -51,7 +46,10 @@ public class AddNewProduct extends AppCompatActivity {
 
     Bitmap selectedImage;
     ImageView imageView;
-    EditText commendText;
+    EditText explanationText;
+    EditText categoryText;
+    EditText colorText;
+    Spinner sizeSpinner;
     Uri imageData;
     TextView unitPriceText;
     TextView productNameText;
@@ -73,9 +71,12 @@ public class AddNewProduct extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
 
         imageView = findViewById(R.id.imageView);
-        commendText = findViewById(R.id.et_introduction);
-        unitPriceText=findViewById(R.id.text_unitPrice);
-        productNameText=findViewById(R.id.et_product_name);
+        explanationText = findViewById(R.id.et_explanation);
+        unitPriceText = findViewById(R.id.text_unitPrice);
+        productNameText = findViewById(R.id.et_product_name);
+        categoryText=findViewById(R.id.et_category);
+        colorText=findViewById(R.id.et_color);
+        //sizeSpinner=findViewById(R.id.spinner_size);
 
     }
 
@@ -102,20 +103,25 @@ public class AddNewProduct extends AppCompatActivity {
                             String downloadUrl = uri.toString();
 
                             FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
-                            String userEmail = firebaseUser.getEmail();
 
-                            String comment = commendText.getText().toString();
-                            int unitPrice=Integer.parseInt(unitPriceText.getText().toString());
-                            String productName=productNameText.getText().toString();
+                            String userEmail = firebaseUser.getEmail();
+                            String comment = explanationText.getText().toString();
+                            String category=categoryText.getText().toString();
+                            String color=colorText.getText().toString();
+                            //String size=sizeSpinner.getOnItemClickListener().toString();
+                            String productName = productNameText.getText().toString();
+                            int unitPrice = Integer.parseInt(unitPriceText.getText().toString());
 
                             HashMap<String, Object> productData = new HashMap<>();
                             productData.put("useremail", userEmail);
-                            productData.put("productname",productName);
+                            productData.put("productname", productName);
                             productData.put("downloadurl", downloadUrl);
-                            productData.put("unitprice",unitPrice);
+                            productData.put("unitprice", unitPrice);
                             productData.put("comment", comment);
+                            productData.put("category",category);
+                            productData.put("color",color);
+                            //productData.put("size",size);
                             productData.put("date", FieldValue.serverTimestamp());
-
 
 
                             firebaseFirestore.collection("Products").add(productData).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {

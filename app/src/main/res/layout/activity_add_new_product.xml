@@ -61,7 +61,7 @@
 
 
             <Spinner
-                android:id="@+id/spinner"
+                android:id="@+id/spinner_size"
                 android:layout_width="250dp"
                 android:layout_height="40dp"
                 android:layout_marginLeft="10dp"
@@ -85,7 +85,7 @@
                 android:textSize="18sp" />
 
             <EditText
-                android:id="@+id/et_introduction"
+                android:id="@+id/et_explanation"
                 android:layout_width="250dp"
                 android:layout_height="40dp"
                 android:layout_marginLeft="10dp"

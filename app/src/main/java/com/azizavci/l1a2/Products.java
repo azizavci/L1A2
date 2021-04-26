@@ -36,6 +36,8 @@ public class Products extends AppCompatActivity {
     ProductRecyclerAdapter productRecyclerAdapter;
 
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,7 +50,7 @@ public class Products extends AppCompatActivity {
 
         RecyclerView recyclerView = findViewById(R.id.products_recyclerview);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        productRecyclerAdapter = new ProductRecyclerAdapter(productNameFromFB);
+        productRecyclerAdapter = new ProductRecyclerAdapter(productNameFromFB, productImageFromFB);
         recyclerView.setAdapter(productRecyclerAdapter);
 
     }
@@ -62,6 +64,13 @@ public class Products extends AppCompatActivity {
         productImageFromFB = new ArrayList<>();
         productNameFromFB = new ArrayList<>();
         //productUnitPriceFromFB = new ArrayList<>();
+    }
+
+
+    public void clickMenu(View view){
+        Intent intent = new Intent(Products.this, MyMenu.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
     }
 
     public void addNewItem(View view) {
